@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BottomNavigation extends StatelessWidget {
-  final indexSelected;
-
+class BottomNavigation extends StatefulWidget {
   const BottomNavigation({
-    @required this.indexSelected,
     Key key,
   }) : super(key: key);
 
@@ -16,9 +13,23 @@ class BottomNavigation extends StatelessWidget {
     {'icon': Icons.person},
   ];
 
-  Widget _navIcon({BuildContext context, IconData icon, bool isSelected}) {
+  @override
+  _BottomNavigationState createState() => _BottomNavigationState();
+}
+
+class _BottomNavigationState extends State<BottomNavigation> {
+  int indexSelected = 0;
+
+  void _setIndexSelected(int i) {
+    setState(() {
+      indexSelected = i;
+    });
+  }
+
+  Widget _navIcon(
+      {BuildContext context, IconData icon, bool isSelected, int index}) {
     return GestureDetector(
-      onTap: () => print("tapped nav $icon"),
+      onTap: () => _setIndexSelected(index),
       child: Stack(
         children: [
           Container(
@@ -47,11 +58,13 @@ class BottomNavigation extends StatelessWidget {
       color: Colors.teal,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List<Widget>.generate(navPaths.length, (index) {
+        children:
+            List<Widget>.generate(BottomNavigation.navPaths.length, (index) {
           return _navIcon(
             context: context,
-            icon: navPaths[index]['icon'],
+            icon: BottomNavigation.navPaths[index]['icon'],
             isSelected: index == indexSelected ? true : false,
+            index: index,
           );
         }),
       ),

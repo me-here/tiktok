@@ -21,9 +21,7 @@ class TikTok extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            TopBar(
-              followingSelected: false,
-            ),
+            TopBar(),
             Expanded(
               child: Row(
                 children: [
@@ -42,9 +40,7 @@ class TikTok extends StatelessWidget {
                 ],
               ),
             ),
-            BottomNavigation(
-              indexSelected: 0,
-            )
+            BottomNavigation()
           ],
         ),
       ),
