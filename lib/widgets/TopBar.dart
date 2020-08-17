@@ -10,8 +10,6 @@ class TopBar extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  const TopBar._({this.followingSelected});
-
   @override
   Widget build(BuildContext context) {
     return Container(

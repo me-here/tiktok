@@ -42,7 +42,9 @@ class TikTok extends StatelessWidget {
                 ],
               ),
             ),
-            BottomNavigation()
+            BottomNavigation(
+              indexSelected: 0,
+            )
           ],
         ),
       ),
