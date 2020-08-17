@@ -21,7 +21,9 @@ class TikTok extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            TopBar(),
+            TopBar(
+              followingSelected: false,
+            ),
             Expanded(
               child: Row(
                 children: [
