@@ -18,31 +18,31 @@ class TikTok extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            TopBar(),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Description(),
-                        ),
-                      ],
+      body: Stack(
+        children: [
+          // START: VIDEO PLAYER
+          Container(
+            color: Colors.black,
+          ),
+          // END: VIDEO PLAYER
+
+          Column(
+            children: [
+              TopBar(),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Description(),
                     ),
-                  ),
-                  ShareIcons(),
-                ],
+                    ShareIcons(),
+                  ],
+                ),
               ),
-            ),
-            BottomNavigation()
-          ],
-        ),
+              BottomNavigation()
+            ],
+          ),
+        ],
       ),
     );
   }

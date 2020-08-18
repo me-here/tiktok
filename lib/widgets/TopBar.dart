@@ -25,7 +25,6 @@ class _TopBarState extends State<TopBar> {
   Widget build(BuildContext context) {
     return Container(
       height: 75,
-      color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
