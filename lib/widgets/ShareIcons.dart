@@ -59,35 +59,41 @@ class _ShareIconsState extends State<ShareIcons> {
       );
     }
 
+    final _iconSize = MediaQuery.of(context).size.width * .05  
+
     final profilePic = Container(
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        overflow: Overflow.visible,
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: MediaQuery.of(context).size.width * .058,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "http://www.adrants.com/images/tik_tok_logo.jpeg"),
-              radius: MediaQuery.of(context).size.width * .055,
-            ),
-          ),
-          Positioned(
-            bottom: -MediaQuery.of(context).size.width * .02,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.red,
-              ),
-              child: Icon(
-                Icons.add,
-                color: Colors.black,
-                size: MediaQuery.of(context).size.width * .05,
+      child: Container(
+        margin: EdgeInsets.only(
+            bottom: _iconSize / 2),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          overflow: Overflow.visible,
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: MediaQuery.of(context).size.width * .058,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "http://www.adrants.com/images/tik_tok_logo.jpeg"),
+                radius: MediaQuery.of(context).size.width * .055,
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: -MediaQuery.of(context).size.width * .02,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.red,
+                ),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.black,
+                  size: _iconSize,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
 
