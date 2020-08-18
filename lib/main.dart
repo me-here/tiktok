@@ -21,10 +21,8 @@ class TikTok extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final controller = PageController (
+    final controller = PageController(
       initialPage: 1,
-
     );
 
     return SafeArea(
@@ -47,14 +45,14 @@ class TikTok extends StatelessWidget {
 
             PageView(
               controller: controller,
-                scrollDirection: Axis.vertical,
-                children: [
-                  VideoWidget(),
-                  VideoWidget(),
-                  VideoWidget(),
-                ],
+              scrollDirection: Axis.vertical,
+              children: colors.map((c) {
+                return Container(
+                  color: c,
+                  child: VideoWidget(),
+                );
+              }).toList(),
             ),
-
             Column(
               children: [
                 TopBar(),
