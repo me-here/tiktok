@@ -59,12 +59,11 @@ class _ShareIconsState extends State<ShareIcons> {
       );
     }
 
-    final _iconSize = MediaQuery.of(context).size.width * .05  
+    final _iconSize = MediaQuery.of(context).size.width * .05;
 
     final profilePic = Container(
       child: Container(
-        margin: EdgeInsets.only(
-            bottom: _iconSize / 2),
+        margin: EdgeInsets.only(bottom: _iconSize / 2),
         child: Stack(
           alignment: Alignment.bottomCenter,
           overflow: Overflow.visible,
@@ -91,7 +90,7 @@ class _ShareIconsState extends State<ShareIcons> {
                   size: _iconSize,
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -108,7 +107,6 @@ class _ShareIconsState extends State<ShareIcons> {
     );
 
     return Container(
-      color: Colors.black,
       width: MediaQuery.of(context).size.width * .18,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -37,7 +37,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               icon,
               color: Colors.white,
             ),
-            padding: EdgeInsets.only(top: 8, bottom: 8),
+            padding: EdgeInsets.symmetric(vertical: 15),
           ),
           Positioned(
             bottom: 0,
@@ -55,7 +55,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.teal,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children:
