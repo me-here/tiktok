@@ -61,26 +61,30 @@ class _ShareIconsState extends State<ShareIcons> {
 
     final profilePic = Container(
       child: Stack(
+        alignment: Alignment.bottomCenter,
+        overflow: Overflow.visible,
         children: [
-          Align(
-            alignment: Alignment.center,
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: MediaQuery.of(context).size.width * .058,
             child: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: MediaQuery.of(context).size.width * .058,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "http://www.adrants.com/images/tik_tok_logo.jpeg"),
-                radius: MediaQuery.of(context).size.width * .055,
-              ),
+              backgroundImage: NetworkImage(
+                  "http://www.adrants.com/images/tik_tok_logo.jpeg"),
+              radius: MediaQuery.of(context).size.width * .055,
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.width * .135 ,
-            alignment: Alignment.bottomCenter,
-            child: Icon(
-              Icons.add_circle,
-              color: Colors.red,
-              size: MediaQuery.of(context).size.width * .04,
+          Positioned(
+            bottom: -MediaQuery.of(context).size.width * .02,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.red,
+              ),
+              child: Icon(
+                Icons.add,
+                color: Colors.black,
+                size: MediaQuery.of(context).size.width * .05,
+              ),
             ),
           ),
         ],

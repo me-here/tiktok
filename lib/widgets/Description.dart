@@ -7,7 +7,6 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final usernameText = Text(
       "@sample_username",
       style: TextStyle(
