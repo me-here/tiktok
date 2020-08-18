@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/VideoPlayer.dart';
 
 import './widgets/TopBar.dart';
 import './widgets/BottomNavigation.dart';
@@ -23,6 +24,7 @@ class TikTok extends StatelessWidget {
           // START: VIDEO PLAYER
           Container(
             color: Colors.black,
+            child: VideoWidget(),
           ),
           // END: VIDEO PLAYER
 
