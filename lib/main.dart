@@ -20,9 +20,12 @@ class TikTok extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          // START: VIDEO PLAYER
           Container(
             color: Colors.black,
           ),
+          // END: VIDEO PLAYER
+
           Column(
             children: [
               TopBar(),
