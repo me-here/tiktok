@@ -18,6 +18,7 @@ class TikTok extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       body: SafeArea(
         child: Column(
           children: [
@@ -26,15 +27,7 @@ class TikTok extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Description(),
-                        ),
-                      ],
-                    ),
+                      child: Description(),
                   ),
                   ShareIcons(),
                 ],
