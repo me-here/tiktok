@@ -19,42 +19,44 @@ class TikTok extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // START: VIDEO PLAYER
-          // Container(
-          //   color: Colors.black,
-          // ),
-          // END: VIDEO PLAYER
-          ListView.builder(
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                color: colors[index],
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              );
-            },
-            itemCount: colors.length,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            // START: VIDEO PLAYER
+            // Container(
+            //   color: Colors.black,
+            // ),
+            // END: VIDEO PLAYER
+            ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  color: colors[index],
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                );
+              },
+              itemCount: colors.length,
+            ),
 
-          Column(
-            children: [
-              TopBar(),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Description(),
-                    ),
-                    ShareIcons(),
-                  ],
+            Column(
+              children: [
+                TopBar(),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Description(),
+                      ),
+                      ShareIcons(),
+                    ],
+                  ),
                 ),
-              ),
-              BottomNavigation()
-            ],
-          ),
-        ],
+                BottomNavigation()
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
