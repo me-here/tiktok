@@ -19,6 +19,8 @@ class _VideoPlayerState extends State<VideoWidget> {
         print('initializing');
         setState(() {
           _isInit = !_isInit;
+          _controller.play();
+          _controller.setLooping(true);
         });
       });
     print("initState: ${_isInit}");

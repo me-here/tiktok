@@ -25,35 +25,17 @@ class TikTok extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            // START: VIDEO PLAYER
-            Container(
-              color: Colors.black,
-              child: VideoWidget(),
-            ),
-            // END: VIDEO PLAYER
             ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   color: colors[index],
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
+                  child: VideoWidget(),
                 );
               },
               itemCount: colors.length,
             ),
-            // END: VIDEO PLAYER
-
-            // ListView.builder(
-            //   itemBuilder: (BuildContext context, int index) {
-            //     return Container(
-            //       color: colors[index],
-            //       width: MediaQuery.of(context).size.width,
-            //       height: MediaQuery.of(context).size.height,
-            //     );
-            //   },
-            //   itemCount: colors.length,
-            // ),
-
             Column(
               children: [
                 TopBar(),
