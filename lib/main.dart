@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/VideoPlayer.dart';
 
+// import './widgets/VideoPlayer.dart';
 import './widgets/TopBar.dart';
 import './widgets/BottomNavigation.dart';
 import './widgets/Description.dart';
@@ -25,20 +26,22 @@ class TikTok extends StatelessWidget {
         body: Stack(
           children: [
             // START: VIDEO PLAYER
-            // Container(
-            //   color: Colors.black,
-            // ),
-            // END: VIDEO PLAYER
-            ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  color: colors[index],
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                );
-              },
-              itemCount: colors.length,
+            Container(
+              color: Colors.black,
+              child: VideoWidget(),
             ),
+            // END: VIDEO PLAYER
+
+            // ListView.builder(
+            //   itemBuilder: (BuildContext context, int index) {
+            //     return Container(
+            //       color: colors[index],
+            //       width: MediaQuery.of(context).size.width,
+            //       height: MediaQuery.of(context).size.height,
+            //     );
+            //   },
+            //   itemCount: colors.length,
+            // ),
 
             Column(
               children: [
