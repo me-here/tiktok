@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Description extends StatelessWidget {
+  final String username;
+  final List<String> tags;
+
   const Description({
+    @required this.username,
+    this.tags,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final usernameText = Text(
-      "@sample_username",
+      "@$username",
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 20,
@@ -17,7 +22,7 @@ class Description extends StatelessWidget {
     );
 
     final descriptionText = Text(
-      "#foryoupage #fyp #sampleDescription #cats #fyp #sampleDescription",
+      tags.fold("", (tagString, tag) => tagString += ' #$tag'),
       style: TextStyle(
         fontSize: 14,
         color: Colors.white,

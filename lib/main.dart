@@ -39,7 +39,17 @@ class TikTok extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Description(),
+              child: Description(
+                username: 'firestart',
+                tags: [
+                  "foryoupage",
+                  "fyp",
+                  "sampleDescription",
+                  "cats",
+                  "fyp",
+                  "sampleDescription"
+                ],
+              ),
             ),
             ShareIcons(),
           ],
