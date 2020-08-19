@@ -8,6 +8,7 @@ class VideoWidget extends StatefulWidget {
 
 class _VideoPlayerState extends State<VideoWidget> {
   VideoPlayerController _controller;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -18,6 +19,7 @@ class _VideoPlayerState extends State<VideoWidget> {
         print('initializing');
         setState(() {
           _controller.play();
+          _isLoading = false;
           _controller.setLooping(true);
         });
       });
@@ -25,10 +27,16 @@ class _VideoPlayerState extends State<VideoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: _controller.value.aspectRatio,
-      child: VideoPlayer(_controller),
-    );
+    return !_isLoading
+        ? AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          )
+        : Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.red,
+            ),
+          );
   }
 
   @override
