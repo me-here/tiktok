@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok/widgets/VideoPlayer.dart';
 
-// import './widgets/VideoPlayer.dart';
+import './widgets/VideoPlayer.dart';
 import './widgets/TopBar.dart';
 import './widgets/BottomNavigation.dart';
 import './widgets/Description.dart';
@@ -17,58 +16,51 @@ void main() {
 }
 
 class TikTok extends StatelessWidget {
-  List<Color> colors = [Colors.green, Colors.blue, Colors.orange];
+  final List<Color> colors = [Colors.green, Colors.blue, Colors.orange];
+
+  PageView _backgroundVideos(PageController controller) {
+    return PageView(
+      controller: controller,
+      scrollDirection: Axis.vertical,
+      children: colors.map((c) {
+        // TODO: Change to vids map
+        return Container(
+          color: c,
+          child: VideoWidget(),
+        );
+      }).toList(),
+    );
+  }
+
+  static Column _uiOverlay = Column(
+    children: [
+      TopBar(),
+      Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              child: Description(),
+            ),
+            ShareIcons(),
+          ],
+        ),
+      ),
+      BottomNavigation()
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
     final controller = PageController(
-      initialPage: 1,
+      initialPage: 0,
     );
 
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
-            /*
-            ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  color: colors[index],
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: VideoWidget(),
-                );
-              },
-              itemCount: colors.length,
-            ),
-            */
-
-            PageView(
-              controller: controller,
-              scrollDirection: Axis.vertical,
-              children: colors.map((c) {
-                return Container(
-                  color: c,
-                  child: VideoWidget(),
-                );
-              }).toList(),
-            ),
-            Column(
-              children: [
-                TopBar(),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Description(),
-                      ),
-                      ShareIcons(),
-                    ],
-                  ),
-                ),
-                BottomNavigation()
-              ],
-            ),
+            _backgroundVideos(controller),
+            _uiOverlay,
           ],
         ),
       ),
