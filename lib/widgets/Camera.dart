@@ -10,31 +10,55 @@ class CameraWidget extends StatefulWidget {
 class _CameraWidgetState extends State<CameraWidget> {
   List<CameraDescription> cameras;
   CameraController _controller;
+  bool _isReady;
 
   Future<void> getCameras() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    cameras = await availableCameras();
+    try {
+      WidgetsFlutterBinding.ensureInitialized();
+      cameras = await availableCameras();
+      _controller = CameraController(cameras[0], ResolutionPreset.medium);
+    } on Exception catch (_) {
+      print('Not working');
+    }
+    _controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _isReady = true;
+      });
+    });
   }
 
   void initState() {
     super.initState();
     getCameras();
-    _controller = CameraController(cameras[0], ResolutionPreset.medium);
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return _controller.value.isInitialized
-        ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: CameraPreview(_controller))
-        : Container();
+    return !_isReady
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: CameraPreview(_controller),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FlatButton(
+                    child: Text('Hello'),
+                    color: Colors.blue,
+                    onPressed: () {},
+                  ),
+                ],
+              )
+            ],
+          );
   }
 
   void dispose() {

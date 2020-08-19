@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/Camera.dart';
 
 import './widgets/VideoPlayer.dart';
 import './widgets/TopBar.dart';
@@ -10,7 +11,7 @@ void main() {
   runApp(
     MaterialApp(
       title: "TikTok",
-      home: TikTok(),
+      home: CameraWidget(), //TikTok(),
     ),
   );
 }
