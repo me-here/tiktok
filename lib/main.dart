@@ -11,7 +11,7 @@ void main() {
   runApp(
     MaterialApp(
       title: "TikTok",
-      home: CameraWidget(), //TikTok(),
+      home: TikTok(),
     ),
   );
 }
