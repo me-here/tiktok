@@ -24,24 +24,26 @@ class ProfileScreen extends StatelessWidget {
     ];
 
     Widget _createStats(int statNum, String statName) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "$statNum",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+      return Container(
+        width: 110,
+        child: Column(
+          children: [
+            Text(
+              "$statNum",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
-          ),
-          Text(
-            statName,
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 15,
+            Text(
+              statName,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
