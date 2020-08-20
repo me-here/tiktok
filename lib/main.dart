@@ -1,6 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_database/firebase_database.dart';
 
 import './screens/AddScreen.dart';
 import './screens/MessagesScreen.dart';
@@ -30,8 +30,8 @@ class _TikTokState extends State<TikTok> {
   @override
   void initState() {
     super.initState();
-    final ref = FirebaseDatabase.instance.reference();
-    ref.once().then((DataSnapshot snap) => print(snap.value));
+    //final ref = FirebaseDatabase.instance.reference();
+    //ref.once().then((DataSnapshot snap) => print(snap.value));
     print('beginning firebase call.');
   }
 

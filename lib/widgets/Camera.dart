@@ -66,6 +66,7 @@ class _CameraWidgetState extends State<CameraWidget> {
       cameras = await availableCameras();
       _controller = CameraController(cameras[0], ResolutionPreset.high);
       await _controller.initialize();
+      await _controller.prepareForVideoRecording();
     } on Exception catch (_) {
       print('Not working');
     }
@@ -82,10 +83,11 @@ class _CameraWidgetState extends State<CameraWidget> {
         setState(() {
           _startRecording = !_startRecording;
         });
-        print(_startRecording);
+        print("onStartRecord: _startRecording - $_startRecording");
+        print("onStartRecord: filePath - $filePath");
       }
       if (filePath != null) {
-        showSnackBar('Saving video to $filePath');
+        showSnackBar('onStartRecord: Saving video to $filePath');
       }
     });
   }
@@ -93,9 +95,11 @@ class _CameraWidgetState extends State<CameraWidget> {
   void onStopRecord() {
     stopVideoRecording().then((_) {
       if (mounted) {
-        this.setState(() {});
+        this.setState(() {
+          _startRecording = !_startRecording;
+        });
       }
-      showSnackBar('Saving video to $videoPath');
+      showSnackBar('onStopRecord: Saving video to $videoPath');
     });
   }
 
@@ -111,21 +115,17 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     try {
       videoPath = filePath;
-      _controller.startVideoRecording(videoPath);
+      await _controller.startVideoRecording(videoPath);
+      print('startVideoRecording: ${_controller.value.isRecordingVideo}');
     } on Exception catch (e) {
       _showException(e);
       return null;
     }
     return filePath;
-    /*print('start');
-    this.setState(() {
-      _startRecording = !_startRecording;
-    });
-    print(_controller.value.isRecordingVideo);*/
   }
 
   Future<void> stopVideoRecording() async {
-    /*if (!_controller.value.isRecordingVideo) {
+    if (!_controller.value.isRecordingVideo) {
       return null;
     }
 
@@ -134,7 +134,7 @@ class _CameraWidgetState extends State<CameraWidget> {
     } on Exception catch (e) {
       _showException(e);
       return null;
-    }*/
+    }
     print('stopping');
   }
 
