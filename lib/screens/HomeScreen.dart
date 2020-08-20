@@ -5,6 +5,7 @@ import '../widgets/ShareIcons.dart';
 import '../widgets/BottomNavigation.dart';
 import '../widgets/VideoPlayer.dart';
 
+/// This is the home page with the videos, descriptions, action buttons, etc.
 class HomeScreen extends StatelessWidget {
   final Function buildUI;
   HomeScreen(this.buildUI);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// This is the comment screen.
 class CommentScreen extends StatelessWidget {
   final Function buildUI;
   CommentScreen(this.buildUI);

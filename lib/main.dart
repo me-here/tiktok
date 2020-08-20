@@ -23,8 +23,9 @@ class TikTok extends StatefulWidget {
 }
 
 class _TikTokState extends State<TikTok> {
-  int indexSelected = 0;
+  int currentPage = 0;
 
+  /// These are all the screens.
   List<Widget> get pages {
     return [
       HomeScreen(buildUI),
@@ -35,6 +36,8 @@ class _TikTokState extends State<TikTok> {
     ];
   }
 
+  /// This builds the screen UI with a front and back layer, if needed.
+  /// The navigation bar shares space with the front layer.
   Stack buildUI({@required Widget frontLayer, Widget backLayer}) {
     return Stack(
       children: [
@@ -44,24 +47,26 @@ class _TikTokState extends State<TikTok> {
             Expanded(
               child: frontLayer,
             ),
-            BottomNavigation(indexSelected, _setIndexSelected),
+            BottomNavigation(currentPage, _changePage),
           ],
         ),
       ],
     );
   }
 
-  void _setIndexSelected(int i) {
+  /// Changes the page to the selected page.
+  void _changePage(int i) {
     setState(() {
-      indexSelected = i;
+      currentPage = i;
     });
   }
 
+  /// Displays the current page.
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: pages[indexSelected],
+        body: pages[currentPage],
       ),
     );
   }

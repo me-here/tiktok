@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// This is where you see your profile.
 class ProfileScreen extends StatelessWidget {
   final Function buildUI;
   ProfileScreen(this.buildUI);
