@@ -16,17 +16,17 @@ class _CameraWidgetState extends State<CameraWidget> {
     try {
       WidgetsFlutterBinding.ensureInitialized();
       cameras = await availableCameras();
-      _controller = CameraController(cameras[0], ResolutionPreset.medium);
+      _controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+      await _controller.initialize();
     } on Exception catch (_) {
       print('Not working');
     }
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        _isReady = true;
-      });
+
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _isReady = true;
     });
   }
 
@@ -37,28 +37,70 @@ class _CameraWidgetState extends State<CameraWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return !_isReady
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Stack(
-            children: [
-              AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: CameraPreview(_controller),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FlatButton(
-                    child: Text('Hello'),
-                    color: Colors.blue,
-                    onPressed: () {},
-                  ),
-                ],
+    return Scaffold(
+        body: _controller == null
+            ? Center(
+                child: CircularProgressIndicator(),
               )
-            ],
-          );
+            : Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: CameraPreview(_controller),
+                  ),
+                  /*Container(
+                    margin: EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            RawMaterialButton(
+                              fillColor: Colors.teal,
+                              padding: EdgeInsets.all(20),
+                              shape: CircleBorder(),
+                              onPressed: () {},
+                            ),
+                            Text(
+                              'Effects',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            RawMaterialButton(
+                              fillColor: Colors.red,
+                              padding: EdgeInsets.all(35),
+                              shape: CircleBorder(),
+                              onPressed: () {},
+                            ),
+                            Text('Tap to Shoot',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ))
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            RawMaterialButton(
+                              fillColor: Colors.yellow,
+                              padding: EdgeInsets.all(20),
+                              shape: CircleBorder(),
+                              onPressed: () {},
+                            ),
+                            Text(
+                              'Upload',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )*/
+                ],
+              ));
   }
 
   void dispose() {
