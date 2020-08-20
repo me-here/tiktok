@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/Camera.dart';
 
 /// This is where you add your pictures.
 class AddScreen extends StatelessWidget {
@@ -7,11 +8,6 @@ class AddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildUI(
-      frontLayer: Container(
-        // TODO: REPLACE THIS CONTAINER WITH THE SCREEN
-        color: Colors.orange,
-      ),
-    );
+    return buildUI(frontLayer: CameraWidget());
   }
 }

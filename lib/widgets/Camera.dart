@@ -10,7 +10,85 @@ class CameraWidget extends StatefulWidget {
 class _CameraWidgetState extends State<CameraWidget> {
   List<CameraDescription> cameras;
   CameraController _controller;
-  bool _isReady;
+  List<IconButton> _topButtons = [
+    IconButton(
+      icon: Icon(
+        Icons.music_video,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.music_note,
+        color: Colors.white,
+      ),
+      onPressed: () {},
+    ),
+  ];
 
   Future<void> getCameras() async {
     try {
@@ -25,9 +103,7 @@ class _CameraWidgetState extends State<CameraWidget> {
     if (!mounted) {
       return;
     }
-    setState(() {
-      _isReady = true;
-    });
+    setState(() {});
   }
 
   void initState() {
@@ -38,69 +114,116 @@ class _CameraWidgetState extends State<CameraWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _controller == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Stack(
-                children: [
-                  AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: CameraPreview(_controller),
-                  ),
-                  /*Container(
-                    margin: EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            RawMaterialButton(
+      body:
+          /*Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        height: 200,
+        child: ListView(
+          children: _topButtons,
+          scrollDirection: Axis.horizontal,
+        ),
+      ),*/
+          _controller == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: CameraPreview(_controller),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: RawMaterialButton(
                               fillColor: Colors.teal,
                               padding: EdgeInsets.all(20),
                               shape: CircleBorder(),
                               onPressed: () {},
                             ),
-                            Text(
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: Text(
                               'Effects',
                               style: TextStyle(color: Colors.white),
                             ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            RawMaterialButton(
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: RawMaterialButton(
                               fillColor: Colors.red,
                               padding: EdgeInsets.all(35),
                               shape: CircleBorder(),
                               onPressed: () {},
                             ),
-                            Text('Tap to Shoot',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ))
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            RawMaterialButton(
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: Text(
+                              'Tap to Shoot',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: RawMaterialButton(
                               fillColor: Colors.yellow,
                               padding: EdgeInsets.all(20),
                               shape: CircleBorder(),
                               onPressed: () {},
                             ),
-                            Text(
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: Text(
                               'Upload',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )*/
-                ],
-              ));
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20.0),
+                      height: 100.0,
+                      child: Expanded(
+                        child: ListView.builder(
+                            physics: ClampingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _topButtons.length,
+                            itemBuilder: (BuildContext ctx, int index) {
+                              return _topButtons[index];
+                            }),
+                      ),
+                    ),
+                  ],
+                ),
+    );
   }
 
   void dispose() {
