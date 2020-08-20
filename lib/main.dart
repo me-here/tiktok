@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:firebase_database/firebase_database.dart';
+=======
+import 'package:tiktok/widgets/Camera.dart';
+>>>>>>> bebe16c5d5db8b925764ae0aff3fa7a9119fb97d
 
 import './screens/AddScreen.dart';
 import './screens/MessagesScreen.dart';
