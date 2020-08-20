@@ -28,11 +28,9 @@ class _VideoPlayerState extends State<VideoWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     //Stack for Video Player, Play Icon, and Pausing Area
     return Stack(
       children: [
-
         //Adding Video Player in Background
         !_isLoading
             ? SizedBox(

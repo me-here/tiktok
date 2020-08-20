@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-import './widgets/VideoPlayer.dart';
-import './widgets/TopBar.dart';
+import './screens/AddScreen.dart';
+import './screens/CommentScreen.dart';
+import './screens/HomeScreen.dart';
+import './screens/SearchScreen.dart';
+import './screens/ProfileScreen.dart';
+
 import './widgets/BottomNavigation.dart';
-import './widgets/Description.dart';
-import './widgets/ShareIcons.dart';
 
 void main() {
   runApp(
@@ -15,64 +17,51 @@ void main() {
   );
 }
 
-class TikTok extends StatelessWidget {
-  final List<Color> colors = [Colors.green, Colors.blue, Colors.orange];
+class TikTok extends StatefulWidget {
+  @override
+  _TikTokState createState() => _TikTokState();
+}
 
-  PageView _backgroundVideos(PageController controller) {
-    return PageView(
-      controller: controller,
-      scrollDirection: Axis.vertical,
-      children: colors.map((c) {
-        // TODO: Change to vids map
-        return Container(
-          color: c,
-          child: VideoWidget(),
-        );
-      }).toList(),
+class _TikTokState extends State<TikTok> {
+  int indexSelected = 0;
+
+  List<Widget> get pages {
+    return [
+      HomeScreen(buildUI),
+      SearchScreen(buildUI),
+      AddScreen(buildUI),
+      CommentScreen(buildUI),
+      ProfileScreen(buildUI),
+    ];
+  }
+
+  Stack buildUI({@required Widget frontLayer, Widget backLayer}) {
+    return Stack(
+      children: [
+        if (backLayer != null) backLayer,
+        Column(
+          children: [
+            Expanded(
+              child: frontLayer,
+            ),
+            BottomNavigation(indexSelected, _setIndexSelected),
+          ],
+        ),
+      ],
     );
   }
 
-  static Column _uiOverlay = Column(
-    children: [
-      TopBar(),
-      Expanded(
-        child: Row(
-          children: [
-            Expanded(
-              child: Description(
-                username: 'firestart',
-                tags: [
-                  "foryoupage",
-                  "fyp",
-                  "sampleDescription",
-                  "cats",
-                  "fyp",
-                  "sampleDescription"
-                ],
-              ),
-            ),
-            ShareIcons(),
-          ],
-        ),
-      ),
-      BottomNavigation()
-    ],
-  );
+  void _setIndexSelected(int i) {
+    setState(() {
+      indexSelected = i;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = PageController(
-      initialPage: 0,
-    );
-
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            _backgroundVideos(controller),
-            _uiOverlay,
-          ],
-        ),
+        body: pages[indexSelected],
       ),
     );
   }

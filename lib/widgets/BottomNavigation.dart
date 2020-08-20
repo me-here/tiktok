@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({
-    Key key,
-  }) : super(key: key);
+class BottomNavigation extends StatelessWidget {
+  final int indexSelected;
+  final Function setIndexSelected;
+  BottomNavigation(this.indexSelected, this.setIndexSelected);
 
   static const navPaths = [
     {'icon': Icons.home},
@@ -13,29 +13,20 @@ class BottomNavigation extends StatefulWidget {
     {'icon': Icons.person},
   ];
 
-  @override
-  _BottomNavigationState createState() => _BottomNavigationState();
-}
-
-class _BottomNavigationState extends State<BottomNavigation> {
-  int indexSelected = 0;
-
-  void _setIndexSelected(int i) {
-    setState(() {
-      indexSelected = i;
-    });
+  Color get _iconColor {
+    return indexSelected == 0 ? Colors.white : Colors.grey;
   }
 
   Widget _navIcon(
       {BuildContext context, IconData icon, bool isSelected, int index}) {
     return GestureDetector(
-      onTap: () => _setIndexSelected(index),
+      onTap: () => setIndexSelected(index),
       child: Stack(
         children: [
           Container(
             child: Icon(
               icon,
-              color: Colors.white,
+              color: _iconColor,
             ),
             padding: EdgeInsets.symmetric(vertical: 15),
           ),
@@ -44,7 +35,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             child: Container(
               width: IconTheme.of(context).size,
               height: 2,
-              color: isSelected ? Colors.white : null,
+              color: isSelected ? _iconColor : null,
             ),
           )
         ],
