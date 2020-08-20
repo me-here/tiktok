@@ -13,8 +13,17 @@ class _CameraWidgetState extends State<CameraWidget> {
   List<IconButton> _topButtons = [
     IconButton(
       icon: Icon(
-        Icons.music_video,
+        Icons.exit_to_app,
         color: Colors.white,
+        size: 30,
+      ),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(
+        Icons.color_lens,
+        color: Colors.white,
+        size: 30,
       ),
       onPressed: () {},
     ),
@@ -22,69 +31,23 @@ class _CameraWidgetState extends State<CameraWidget> {
       icon: Icon(
         Icons.music_note,
         color: Colors.white,
+        size: 30,
       ),
       onPressed: () {},
     ),
     IconButton(
       icon: Icon(
-        Icons.music_note,
+        Icons.timelapse,
         color: Colors.white,
+        size: 30,
       ),
       onPressed: () {},
     ),
     IconButton(
       icon: Icon(
-        Icons.music_note,
+        Icons.slow_motion_video,
         color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(
-        Icons.music_note,
-        color: Colors.white,
+        size: 30,
       ),
       onPressed: () {},
     ),
@@ -209,17 +172,19 @@ class _CameraWidgetState extends State<CameraWidget> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 100.0,
-                      child: Expanded(
-                        child: ListView.builder(
-                            physics: ClampingScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: _topButtons.length,
-                            itemBuilder: (BuildContext ctx, int index) {
-                              return _topButtons[index];
-                            }),
-                      ),
+                      margin: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.05),
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: ListView.builder(
+                          physics: ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _topButtons.length,
+                          itemBuilder: (BuildContext ctx, int index) {
+                            return Container(
+                              margin: EdgeInsets.all(20),
+                              child: _topButtons[index],
+                            );
+                          }),
                     ),
                   ],
                 ),
