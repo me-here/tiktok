@@ -45,30 +45,55 @@ class _ImageSliderState extends State<ImageSlider> {
             fit: BoxFit.cover,
           ),
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: EdgeInsets.all(16),
-          child: GestureDetector(
-            onTap: _previousSlide,
-            child: Icon(
-              Icons.chevron_left,
-              size: _iconSize,
+        Positioned.fill(
+          child: Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.all(16),
+            child: GestureDetector(
+              onTap: _previousSlide,
+              child: Icon(
+                Icons.chevron_left,
+                size: _iconSize,
+              ),
             ),
           ),
         ),
-        Container(
-          alignment: Alignment.centerRight,
-          margin: EdgeInsets.all(16),
-          child: GestureDetector(
-            onTap: _nextSlide,
-            child: Icon(
-              Icons.chevron_right,
-              size: _iconSize,
+        Positioned.fill(
+          child: Container(
+            alignment: Alignment.centerRight,
+            margin: EdgeInsets.all(16),
+            child: GestureDetector(
+              onTap: _nextSlide,
+              child: Icon(
+                Icons.chevron_right,
+                size: _iconSize,
+              ),
             ),
           ),
         ),
+        Positioned.fill(
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _imageURLs.asMap().keys.map(
+                (index) {
+                  return Container(
+                    height: 10,
+                    width: 10,
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color:
+                          _currentSlide == index ? Colors.black : Colors.white,
+                    ),
+                  );
+                },
+              ).toList(),
+            ),
+          ),
+        )
       ],
-      alignment: Alignment.center,
     );
   }
 }
