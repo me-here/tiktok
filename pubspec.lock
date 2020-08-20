@@ -64,7 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-<<<<<<< HEAD
+  file:
+    dependency: transitive
+    description:
+      name: file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.1"
   firebase:
     dependency: transitive
     description:
@@ -121,15 +127,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-=======
-  file:
-    dependency: transitive
-    description:
-      name: file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.2.1"
->>>>>>> bebe16c5d5db8b925764ae0aff3fa7a9119fb97d
   flutter:
     dependency: "direct main"
     description: flutter
@@ -145,7 +142,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   http:
     dependency: transitive
     description:
@@ -160,14 +156,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.2"
-=======
   intl:
     dependency: transitive
     description:
@@ -175,7 +163,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
->>>>>>> bebe16c5d5db8b925764ae0aff3fa7a9119fb97d
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.2"
   matcher:
     dependency: transitive
     description:
@@ -197,15 +191,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-<<<<<<< HEAD
-  pedantic:
-    dependency: transitive
-    description:
-      name: pedantic
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.9.0"
-=======
   path_provider:
     dependency: "direct main"
     description:
@@ -234,6 +219,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  pedantic:
+    dependency: transitive
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.9.0"
   platform:
     dependency: transitive
     description:
@@ -241,7 +233,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
->>>>>>> bebe16c5d5db8b925764ae0aff3fa7a9119fb97d
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -249,15 +240,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-<<<<<<< HEAD
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.3"
-=======
   process:
     dependency: transitive
     description:
@@ -265,7 +247,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
->>>>>>> bebe16c5d5db8b925764ae0aff3fa7a9119fb97d
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.3"
   sky_engine:
     dependency: transitive
     description: flutter
