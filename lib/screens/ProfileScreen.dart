@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/WhiteAppBar.dart';
 
 /// This is where you see your profile.
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   final Function buildUI;
 
   ProfileScreen(this.buildUI);
 
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     List<String> images = [
@@ -38,8 +43,9 @@ class ProfileScreen extends StatelessWidget {
     ];
 
     //Calculates the height of the gridview with all elements
+    double gridVidAspectRatio = 27/35; //vidWidth/vidHeight
     double gridViewContentHeight = (MediaQuery.of(context).size.width / 3.0) *
-        (images.length / 3.0).ceil();
+        (images.length / 3.0).ceil() * (1 / gridVidAspectRatio);
 
     Widget _createStats(int statNum, String statName) {
       return Container(
@@ -157,13 +163,14 @@ class ProfileScreen extends StatelessWidget {
 
     final usersVideoGrid = GridView.count(
       crossAxisCount: 3,
-      crossAxisSpacing: 1,
-      mainAxisSpacing: 1,
+      crossAxisSpacing: 3,
+      mainAxisSpacing: 3,
       scrollDirection: Axis.vertical,
       physics: ScrollPhysics(),
       shrinkWrap: true,
+      childAspectRatio: gridVidAspectRatio,
       children: List.generate(images.length, (index) {
-        return Card(
+        return Container(
           child: Image.network(
             images[index],
             fit: BoxFit.fill,
@@ -172,7 +179,7 @@ class ProfileScreen extends StatelessWidget {
       }),
     );
 
-    return buildUI(
+    return widget.buildUI(
       frontLayer: Column(
         children: [
           profileAppBar,
