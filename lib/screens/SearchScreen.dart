@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/HorizontalCards.dart';
 
 import '../widgets/SearchBar.dart';
 import '../widgets/ImageSlider.dart';
@@ -28,18 +29,10 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
             ImageSlider(),
-            Container(
-              height: 200,
-              color: Colors.green,
-            ),
-            Container(
-              height: 200,
-              color: Colors.yellow,
-            ),
-            Container(
-              height: 200,
-              color: Colors.pink,
-            ),
+            HorizontalCards(),
+            HorizontalCards(),
+            HorizontalCards(),
+            HorizontalCards(),
           ],
         ),
       ),
