@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/SearchBar.dart';
+import '../widgets/ImageSlider.dart';
+
 /// This is where you can search other tiktoks.
 class SearchScreen extends StatelessWidget {
   final Function buildUI;
@@ -16,24 +19,7 @@ class SearchScreen extends StatelessWidget {
               margin: EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Expanded(
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.bottom,
-                      decoration: InputDecoration(
-                        fillColor: Colors.grey[300],
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: BorderSide.none,
-                        ),
-                        hintText: 'Search',
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
+                  Expanded(child: SearchBar()),
                   Container(
                     margin: EdgeInsets.only(left: 8),
                     child: Icon(Icons.photo_filter),
@@ -41,10 +27,7 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 200,
-              color: Colors.red,
-            ),
+            ImageSlider(),
             Container(
               height: 200,
               color: Colors.green,
