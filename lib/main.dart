@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './screens/AddScreen.dart';
-import './screens/CommentScreen.dart';
+import './screens/MessagesScreen.dart';
 import './screens/HomeScreen.dart';
 import './screens/SearchScreen.dart';
 import './screens/ProfileScreen.dart';
@@ -31,7 +31,7 @@ class _TikTokState extends State<TikTok> {
       HomeScreen(buildUI),
       SearchScreen(buildUI),
       AddScreen(buildUI),
-      CommentScreen(buildUI),
+      MessagesScreen(buildUI),
       ProfileScreen(buildUI),
     ];
   }

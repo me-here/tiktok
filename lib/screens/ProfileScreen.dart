@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/WhiteAppBar.dart';
 
 /// This is where you see your profile.
 class ProfileScreen extends StatelessWidget {
@@ -64,27 +65,9 @@ class ProfileScreen extends StatelessWidget {
       );
     }
 
-    final profileAppBar = AppBar(
-      backgroundColor: Colors.white,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            Icons.perm_identity,
-            color: Colors.black,
-          ),
-          Text(
-            "Username",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-          Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-        ],
-      ),
+    final profileAppBar = WhiteAppBar(
+      leading: Icons.perm_identity,
+      trailing: Icons.menu,
     );
 
     final profileInfoArea = Container(
