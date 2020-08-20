@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/Camera.dart';
 
-import './widgets/VideoPlayer.dart';
-import './widgets/TopBar.dart';
+import './screens/AddScreen.dart';
+import './screens/CommentScreen.dart';
+import './screens/HomeScreen.dart';
+import './screens/SearchScreen.dart';
+import './screens/ProfileScreen.dart';
+
 import './widgets/BottomNavigation.dart';
-import './widgets/Description.dart';
-import './widgets/ShareIcons.dart';
 
 void main() {
   runApp(
@@ -16,54 +18,56 @@ void main() {
   );
 }
 
-class TikTok extends StatelessWidget {
-  final List<Color> colors = [Colors.green, Colors.blue, Colors.orange];
+class TikTok extends StatefulWidget {
+  @override
+  _TikTokState createState() => _TikTokState();
+}
 
-  PageView _backgroundVideos(PageController controller) {
-    return PageView(
-      controller: controller,
-      scrollDirection: Axis.vertical,
-      children: colors.map((c) {
-        // TODO: Change to vids map
-        return Container(
-          color: c,
-          child: VideoWidget(),
-        );
-      }).toList(),
+class _TikTokState extends State<TikTok> {
+  int currentPage = 0;
+
+  /// These are all the screens.
+  List<Widget> get pages {
+    return [
+      HomeScreen(buildUI),
+      SearchScreen(buildUI),
+      AddScreen(buildUI),
+      CommentScreen(buildUI),
+      ProfileScreen(buildUI),
+    ];
+  }
+
+  /// This builds the screen UI with a front and back layer, if needed.
+  /// The navigation bar shares space with the front layer.
+  Stack buildUI({@required Widget frontLayer, Widget backLayer}) {
+    return Stack(
+      children: [
+        if (backLayer != null) backLayer,
+        Column(
+          children: [
+            Expanded(
+              child: frontLayer,
+            ),
+            BottomNavigation(currentPage, _changePage),
+          ],
+        ),
+      ],
     );
   }
 
-  static Column _uiOverlay = Column(
-    children: [
-      TopBar(),
-      Expanded(
-        child: Row(
-          children: [
-            Expanded(
-              child: Description(),
-            ),
-            ShareIcons(),
-          ],
-        ),
-      ),
-      BottomNavigation()
-    ],
-  );
+  /// Changes the page to the selected page.
+  void _changePage(int i) {
+    setState(() {
+      currentPage = i;
+    });
+  }
 
+  /// Displays the current page.
   @override
   Widget build(BuildContext context) {
-    final controller = PageController(
-      initialPage: 0,
-    );
-
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            _backgroundVideos(controller),
-            _uiOverlay,
-          ],
-        ),
+        body: pages[currentPage],
       ),
     );
   }
