@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 
 class ShareIcons extends StatefulWidget {
   const ShareIcons({
     Key key,
   }) : super(key: key);
 
+
   @override
   _ShareIconsState createState() => _ShareIconsState();
 }
 
-class _ShareIconsState extends State<ShareIcons> {
+class _ShareIconsState extends State<ShareIcons>
+    with SingleTickerProviderStateMixin {
+
+
   var isLiked = false;
   var numLikes = 0;
   var numComments = 0;
@@ -29,6 +34,27 @@ class _ShareIconsState extends State<ShareIcons> {
   void _commentFunction() {}
 
   void _shareFunction() {}
+
+  //Controller for Rotating Animation
+  AnimationController _discController;
+
+  //Init and Dispose for the Disc's Rotating Animation's Controller
+  @override
+  void initState() {
+    super.initState();
+    _discController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 5000),
+    );
+
+    _discController.repeat();
+  }
+
+  @override
+  void dispose() {
+    _discController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,13 +122,16 @@ class _ShareIconsState extends State<ShareIcons> {
       ),
     );
 
-    final audioDisc = CircleAvatar(
-      backgroundColor: Color.fromRGBO(69, 71, 73, 1), //Dark Gray
-      radius: MediaQuery.of(context).size.width * .075,
+    final audioDisc = RotationTransition(
+      turns: _discController,
       child: CircleAvatar(
-        backgroundImage:
-            NetworkImage("http://www.adrants.com/images/tik_tok_logo.jpeg"),
-        radius: MediaQuery.of(context).size.width * .045,
+        backgroundColor: Color.fromRGBO(69, 71, 73, 1), //Dark Gray
+        radius: MediaQuery.of(context).size.width * .075,
+        child: CircleAvatar(
+          backgroundImage:
+              NetworkImage("http://www.adrants.com/images/tik_tok_logo.jpeg"),
+          radius: MediaQuery.of(context).size.width * .045,
+        ),
       ),
     );
 
