@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tiktok/widgets/WhiteAppBar.dart';
-import '../widgets/ProfileInfo.dart';
-import '../widgets/ProfileContentTabs.dart';
-import '../widgets/VideoGrids.dart';
+
+import '../widgets/WhiteAppBar.dart';
+import '../widgets/profile/ProfileInfo.dart';
+import '../widgets/profile/ProfileContentTabs.dart';
+import '../widgets/profile/VideoGrids.dart';
 
 /// This is where you see your profile.
 class ProfileScreen extends StatefulWidget {

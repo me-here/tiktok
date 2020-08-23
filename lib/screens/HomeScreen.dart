@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/TopBar.dart';
-import '../widgets/Description.dart';
-import '../widgets/ShareIcons.dart';
-import '../widgets/VideoPlayer.dart';
+import '../widgets/home_screen/TopBar.dart';
+import '../widgets/home_screen/Description.dart';
+import '../widgets/home_screen/ShareIcons.dart';
+import '../widgets/home_screen/VideoPlayer.dart';
 import '../providers/VideoStatus.dart';
 
 /// This is the home page with the videos, descriptions, action buttons, etc.
