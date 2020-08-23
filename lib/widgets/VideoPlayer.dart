@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:video_player/video_player.dart';
+import 'package:tiktok/providers/VideoStatus.dart';
 
 class VideoWidget extends StatefulWidget {
   @override
@@ -22,6 +25,9 @@ class _VideoPlayerState extends State<VideoWidget> {
           _controller.play();
           _isLoading = false;
           _controller.setLooping(true);
+
+          //Sets the video status to isPlaying true for disc rotation animation
+          Provider.of<VideoStatus>(context, listen: false).setVidStatus(_controller.value.isPlaying);
         });
       });
   }
@@ -74,6 +80,8 @@ class _VideoPlayerState extends State<VideoWidget> {
                     _playIsVisible = false;
                     _controller.play();
                   }
+                  //Listens for a change in video playing and sends it to ShareIcons.dart for the rotating disc animation
+                  Provider.of<VideoStatus>(context, listen: false).setVidStatus(_controller.value.isPlaying);
                 });
               },
             ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 
+import 'package:provider/provider.dart';
+import 'package:tiktok/providers/VideoStatus.dart';
+
 class ShareIcons extends StatefulWidget {
   const ShareIcons({
     Key key,
   }) : super(key: key);
-
 
   @override
   _ShareIconsState createState() => _ShareIconsState();
@@ -13,8 +15,6 @@ class ShareIcons extends StatefulWidget {
 
 class _ShareIconsState extends State<ShareIcons>
     with SingleTickerProviderStateMixin {
-
-
   var isLiked = false;
   var numLikes = 0;
   var numComments = 0;
@@ -46,8 +46,6 @@ class _ShareIconsState extends State<ShareIcons>
       vsync: this,
       duration: Duration(milliseconds: 5000),
     );
-
-    _discController.repeat();
   }
 
   @override
@@ -58,6 +56,12 @@ class _ShareIconsState extends State<ShareIcons>
 
   @override
   Widget build(BuildContext context) {
+    final videoStatusData = Provider.of<VideoStatus>(context);
+    final videoStatus = videoStatusData.isVidPlaying;
+
+    //Determines if the video is playing and if the disc should rotate
+    videoStatus ? _discController.repeat() : _discController.stop();
+
     Widget _createIcon(IconData iconType, Function iconFunction, int textNum) {
       return Column(
         children: [

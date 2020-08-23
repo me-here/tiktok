@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../widgets/TopBar.dart';
 import '../widgets/Description.dart';
 import '../widgets/ShareIcons.dart';
-import '../widgets/BottomNavigation.dart';
 import '../widgets/VideoPlayer.dart';
+import '../providers/VideoStatus.dart';
 
 /// This is the home page with the videos, descriptions, action buttons, etc.
 class HomeScreen extends StatelessWidget {
@@ -44,9 +46,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildUI(
-      frontLayer: homePageOverlay,
-      backLayer: _backgroundVideos(controller),
+    return ChangeNotifierProvider(
+      create: (ctx) => VideoStatus(),
+      child: buildUI(
+        frontLayer: homePageOverlay,
+        backLayer: _backgroundVideos(controller),
+      ),
     );
   }
 
