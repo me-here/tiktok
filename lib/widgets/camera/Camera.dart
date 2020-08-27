@@ -117,6 +117,10 @@ class _CameraWidgetState extends State<CameraWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (_controller == null) {
+      return Center(child: CircularProgressIndicator());
+    }
+
     /// This is the actual preview you see of the camera.
     final _cameraPreview = Container(
       width: MediaQuery.of(context).size.width,
@@ -165,11 +169,7 @@ class _CameraWidgetState extends State<CameraWidget> {
     );
 
     return Scaffold(
-      body: _controller == null
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : _cameraScreen,
+      body: _cameraScreen,
     );
   }
 
