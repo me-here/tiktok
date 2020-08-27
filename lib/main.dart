@@ -1,12 +1,11 @@
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_database/firebase_database.dart';
 
 import './screens/CameraScreen.dart';
 import './screens/InboxScreen.dart';
 import './screens/HomeScreen.dart';
 import './screens/DiscoverScreen.dart';
 import './screens/ProfileScreen.dart';
+import './screens/LoginScreen.dart';
 
 import './widgets/BottomNavigation.dart';
 
@@ -14,7 +13,12 @@ void main() {
   runApp(
     MaterialApp(
       title: "TikTok",
-      home: TikTok(),
+      routes: {
+        '/home': (context) => TikTok(),
+        '/login': (context) => LoginScreen(),
+      },
+      initialRoute: '/login',
+      // home: TikTok(),
     ),
   );
 }
