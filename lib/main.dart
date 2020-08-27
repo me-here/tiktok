@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 //import 'package:firebase_database/firebase_database.dart';
 
-import './screens/AddScreen.dart';
-import './screens/MessagesScreen.dart';
+import './screens/CameraScreen.dart';
+import './screens/InboxScreen.dart';
 import './screens/HomeScreen.dart';
-import './screens/SearchScreen.dart';
+import './screens/DiscoverScreen.dart';
 import './screens/ProfileScreen.dart';
 
 import './widgets/BottomNavigation.dart';

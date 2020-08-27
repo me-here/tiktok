@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok/widgets/HorizontalCards.dart';
 
-import '../widgets/SearchBar.dart';
-import '../widgets/ImageSlider.dart';
+import '../widgets/discover/HorizontalCards.dart';
+import '../widgets/discover/SearchBar.dart';
+import '../widgets/discover/ImageSlider.dart';
 
 /// This is where you can search other tiktoks.
 class SearchScreen extends StatelessWidget {
