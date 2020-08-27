@@ -12,68 +12,87 @@ class CameraWidget extends StatefulWidget {
 }
 
 class _CameraWidgetState extends State<CameraWidget> {
-  List<CameraDescription> cameras;
   CameraController _controller;
 
   String videoPath;
   String timestamp() => new DateTime.now().millisecondsSinceEpoch.toString();
-  bool _startRecording = false;
+  bool _isRecording = false;
 
   Future<void> getCameras() async {
     try {
+      // Make sure widget tree is bound to changes in state?
       WidgetsFlutterBinding.ensureInitialized();
-      cameras = await availableCameras();
+
+      // Get cameras, use back cam
+      final cameras = await availableCameras();
       _controller = CameraController(cameras[0], ResolutionPreset.medium);
-      await _controller.initialize();
+
+      // Initialize cam
+      await _controller.initialize().then((_) {
+        // if it has a place on the screen, rebuild the widget.
+        if (!mounted) {
+          return;
+        }
+        setState(() {});
+      });
+
+      // prepare for recording
       await _controller.prepareForVideoRecording();
     } on Exception catch (_) {
       print('Not working');
     }
-
-    if (!mounted) {
-      return;
-    }
-    setState(() {});
   }
 
+  /// Handles starting the recording (whole process).
   void onStartRecord() {
     startVideoRecording().then((String filePath) {
-      if (mounted) {
-        setState(() {
-          _startRecording = !_startRecording;
-        });
-        print("onStartRecord: _startRecording - $_startRecording");
-        print("onStartRecord: filePath - $filePath");
-      }
+      toggleRecordingMode();
+      print("onStartRecord: _startRecording - $_isRecording");
+      print("onStartRecord: filePath - $filePath");
+
       if (filePath != null) {
         showSnackBar('onStartRecord: Saving video to $filePath');
       }
     });
   }
 
+  /// Handles stopping the recording (whole process).
   void onStopRecord() {
     stopVideoRecording().then((_) {
-      if (mounted) {
-        this.setState(() {
-          _startRecording = !_startRecording;
-        });
-      }
+      toggleRecordingMode();
       showSnackBar('onStopRecord: Saving video to $videoPath');
     });
   }
 
-  Future<String> startVideoRecording() async {
-    final Directory extDir = await getApplicationDocumentsDirectory();
-    final String dirPath = '${extDir.path}/Videos';
-    await new Directory(dirPath).create(recursive: true);
-    final String filePath = '$dirPath/${timestamp()}.mp4';
+  /// Toggles the boolean _isRecording and rebuilds the UI accordingly.
+  void toggleRecordingMode() {
+    if (mounted) {
+      setState(() {
+        _isRecording = !_isRecording;
+      });
+    }
+  }
 
+  Future<String> startVideoRecording() async {
+    // If you're recording already you must stop first.
     if (_controller.value.isRecordingVideo) {
       return null;
     }
 
+    // Get documents directory.
+    final Directory extDir = await getApplicationDocumentsDirectory();
+
+    // Create new directory at documents/Videos if it doesn't exist.
+    final String dirPath = '${extDir.path}/Videos';
+    await new Directory(dirPath).create(recursive: true);
+
+    // Where the file should be stored.
+    final String filePath = '$dirPath/${timestamp()}.mp4';
+
     try {
       videoPath = filePath;
+
+      // Record video & save at this path.
       await _controller.startVideoRecording(videoPath);
       print('startVideoRecording: ${_controller.value.isRecordingVideo}');
     } on Exception catch (e) {
@@ -84,6 +103,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   Future<void> stopVideoRecording() async {
+    // Must start before you stop.
     if (!_controller.value.isRecordingVideo) {
       return null;
     }
@@ -140,7 +160,7 @@ class _CameraWidgetState extends State<CameraWidget> {
       ),
       _BottomCameraButton(
         alignment: Alignment.bottomCenter,
-        onPressed: !_startRecording ? onStartRecord : onStopRecord,
+        onPressed: !_isRecording ? onStartRecord : onStopRecord,
         color: Colors.red,
         label: 'Tap to Shoot',
       ),
@@ -154,7 +174,8 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     final _topBar = Container(
       margin: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.05),
+        vertical: MediaQuery.of(context).size.height * 0.05,
+      ),
       height: MediaQuery.of(context).size.height * 0.1,
       child: _TopActionBar(),
     );
