@@ -123,7 +123,8 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   void showSnackBar(String message) {
-    print(message);
+    final snackBar = SnackBar(content: Text(message));
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void logError(String code, String message) {
@@ -164,7 +165,7 @@ class _CameraWidgetState extends State<CameraWidget> {
         onPressed: !_isRecording ? onStartRecord : onStopRecord,
         color: Colors.red,
         label: 'Tap to Shoot',
-        icon: Icons.fiber_manual_record,
+        icon: _isRecording ? Icons.stop : Icons.fiber_manual_record,
       ),
       _BottomCameraButton(
         alignment: Alignment.bottomRight,
