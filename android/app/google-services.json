@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "95945492542-pkvhv82upbnb69u4bgc71necbnkhmi3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tiktok",
+            "certificate_hash": "e3e822a009c0baa984d7501960787b6da0e3e26c"
+          }
+        },
+        {
           "client_id": "95945492542-fephrb9m5v9bplham72kfap2s91s53v9.apps.googleusercontent.com",
           "client_type": 3
         }

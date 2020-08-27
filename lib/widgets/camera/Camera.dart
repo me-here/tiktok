@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
@@ -110,11 +112,28 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     try {
       await _controller.stopVideoRecording();
+      uploadVideo();
     } on Exception catch (e) {
       _showException(e);
       return null;
     }
     print('stopping');
+  }
+
+  void uploadVideo() async {
+    print('UPLOADING.');
+    final StorageReference storageReference =
+        FirebaseStorage().ref().child('videos');
+    final StorageUploadTask uploadTask =
+        storageReference.putFile(File(videoPath));
+    final StreamSubscription<StorageTaskEvent> streamSubscription =
+        uploadTask.events.listen((event) {
+      // notify user of progress, etc.
+      print('EVENT ${event.type}');
+    });
+
+    await uploadTask.onComplete;
+    streamSubscription.cancel();
   }
 
   void _showException(CameraException e) {
