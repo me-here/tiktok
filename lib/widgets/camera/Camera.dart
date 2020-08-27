@@ -143,7 +143,7 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     /// This is the actual preview you see of the camera.
     final _cameraPreview = Container(
-      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height, // Take up whole screen
       child: AspectRatio(
         aspectRatio: _controller.value.aspectRatio,
         child: CameraPreview(_controller),
@@ -157,18 +157,21 @@ class _CameraWidgetState extends State<CameraWidget> {
         onPressed: () {},
         color: Colors.teal,
         label: 'Effects',
+        icon: Icons.photo_filter,
       ),
       _BottomCameraButton(
         alignment: Alignment.bottomCenter,
         onPressed: !_isRecording ? onStartRecord : onStopRecord,
         color: Colors.red,
         label: 'Tap to Shoot',
+        icon: Icons.fiber_manual_record,
       ),
       _BottomCameraButton(
         alignment: Alignment.bottomRight,
         onPressed: () {},
         color: Colors.yellow,
         label: 'Upload',
+        icon: Icons.file_upload,
       ),
     ];
 
@@ -206,12 +209,14 @@ class _BottomCameraButton extends StatelessWidget {
   final Function onPressed;
   final Color color;
   final String label;
+  final IconData icon;
 
   const _BottomCameraButton({
     @required this.alignment,
     @required this.onPressed,
     @required this.color,
     @required this.label,
+    @required this.icon,
     Key key,
   }) : super(key: key);
 
@@ -227,10 +232,11 @@ class _BottomCameraButton extends StatelessWidget {
             child: RawMaterialButton(
               fillColor: color,
               padding: alignment == Alignment.bottomCenter
-                  ? EdgeInsets.all(35)
-                  : EdgeInsets.all(20),
+                  ? EdgeInsets.all(20)
+                  : EdgeInsets.all(12),
               shape: CircleBorder(),
               onPressed: onPressed,
+              child: Icon(icon),
             ),
           ),
           Container(
