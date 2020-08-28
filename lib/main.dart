@@ -31,14 +31,6 @@ class TikTok extends StatefulWidget {
 class _TikTokState extends State<TikTok> {
   int currentPage = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    //final ref = FirebaseDatabase.instance.reference();
-    //ref.once().then((DataSnapshot snap) => print(snap.value));
-    print('beginning firebase call.');
-  }
-
   /// These are all the screens.
   List<Widget> get pages {
     return [

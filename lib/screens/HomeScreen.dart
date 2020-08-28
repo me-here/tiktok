@@ -52,21 +52,23 @@ class _HomeScreenState extends State<HomeScreen> {
     ]);
   }
 
-  List<Map<String, dynamic>> videos;
+  List<Map<String, dynamic>> videos = [];
 
   @override
   void initState() {
     super.initState();
+    getVideos();
+  }
 
+  Future<void> getVideos() async {
     final ref = FirebaseDatabase.instance.reference().child("videos");
-    ref.once().then((DataSnapshot snap) {
-      print("OUTSIDE");
-      videos = snap.value.map((e) {
-        print("INSIDE");
-        return e;
-      }).toList();
-      print(videos);
+    final snap = await ref.once();
+    snap.value.forEach((key, value) {
+      // Add the parsed value to videos, I don't care about the videoID key.
+      final mapValue = Map<String, dynamic>.from(value);
+      videos.add(mapValue);
     });
+    setState(() {});
   }
 
   @override
@@ -84,10 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return PageView(
       controller: controller,
       scrollDirection: Axis.vertical,
-      children: ["hello"].map((c) {
+      children: videos.map((video) {
+        print(video);
         return Container(
           color: Colors.black,
-          child: VideoWidget('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
+          child: VideoWidget(
+            video['link'],
+          ),
         );
       }).toList(),
     );
