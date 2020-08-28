@@ -5,6 +5,11 @@ import 'package:video_player/video_player.dart';
 import 'package:tiktok/providers/VideoStatus.dart';
 
 class VideoWidget extends StatefulWidget {
+
+  final String videoLink;
+
+  VideoWidget(this.videoLink);
+
   @override
   _VideoPlayerState createState() => _VideoPlayerState();
 }
@@ -18,7 +23,7 @@ class _VideoPlayerState extends State<VideoWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      widget.videoLink,
     )..initialize().then((_) {
         print('initializing');
         setState(() {
