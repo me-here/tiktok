@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,6 +17,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   CameraController _controller;
 
   String videoPath;
+  String videoName;
   String timestamp() => new DateTime.now().millisecondsSinceEpoch.toString();
   bool _isRecording = false;
 
@@ -88,7 +90,8 @@ class _CameraWidgetState extends State<CameraWidget> {
     await new Directory(dirPath).create(recursive: true);
 
     // Where the file should be stored.
-    final String filePath = '$dirPath/${timestamp()}.mp4';
+    videoName = '${timestamp()}.mp4';
+    final String filePath = '$dirPath/$videoName';
 
     try {
       videoPath = filePath;
@@ -122,7 +125,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   void uploadVideo() async {
     print('UPLOADING.');
     final StorageReference storageReference =
-        FirebaseStorage().ref().child('videos');
+        FirebaseStorage().ref().child('videos/$videoName');
     final StorageUploadTask uploadTask =
         storageReference.putFile(File(videoPath));
     final StreamSubscription<StorageTaskEvent> streamSubscription =
@@ -133,6 +136,16 @@ class _CameraWidgetState extends State<CameraWidget> {
 
     await uploadTask.onComplete;
     streamSubscription.cancel();
+
+    final downloadURL = await storageReference.getDownloadURL(); // video link
+    final profile = '@mihir'; // get this dynamically from firebase auth
+
+    // Give new video link + profile info for post --> DB
+    final vidRef = FirebaseDatabase.instance.reference().child('videos').push();
+    vidRef.set({
+      'link': downloadURL,
+      'profile': profile,
+    });
   }
 
   void _showException(CameraException e) {
