@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "95945492542-pkvhv82upbnb69u4bgc71necbnkhmi3i.apps.googleusercontent.com",
+          "client_id": "95945492542-77j36h4jhhcn9pb49n8dci6qubqlm7kj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tiktok",
+            "certificate_hash": "17aaef845e4f713a3eba17e8372af1daa9e0d3fa"
+          }
+        },
+        {
+          "client_id": "95945492542-u1j5g11mssd0o3p5ti30cj12bqc7ahio.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.tiktok",
