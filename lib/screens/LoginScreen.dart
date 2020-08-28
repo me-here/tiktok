@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _currentUser = account;
       });
       print(_currentUser);
+      Navigator.of(context).pushNamed('/home');
     });
     _googleSignIn.signInSilently();
   }

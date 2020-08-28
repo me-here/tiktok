@@ -17,8 +17,7 @@ void main() {
         '/home': (context) => TikTok(),
         '/login': (context) => LoginScreen(),
       },
-      initialRoute: '/home',
-      // home: TikTok(),
+      initialRoute: '/login',
     ),
   );
 }
