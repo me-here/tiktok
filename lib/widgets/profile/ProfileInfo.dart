@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ProfileInfo extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -12,12 +10,10 @@ class ProfileInfo extends StatelessWidget {
 }
 
 class ProfileInfoDelegate extends SliverPersistentHeaderDelegate {
-
   double _profileInfoHeight = 300;
 
   Widget _createStats(int statNum, String statName) {
     return Container(
-      width: 110,
       child: Column(
         children: [
           Text(
@@ -40,7 +36,8 @@ class ProfileInfoDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     _profileInfoHeight = MediaQuery.of(context).size.height * .4;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,

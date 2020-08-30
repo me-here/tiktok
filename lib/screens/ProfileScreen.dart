@@ -16,17 +16,16 @@ class ProfileScreen extends StatefulWidget {
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin{
+class _ProfileScreenState extends State<ProfileScreen>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-
     TabController tabControl = new TabController(vsync: this, length: 3);
 
     final profileAppBar = WhiteAppBar(
       leading: Icons.perm_identity,
       trailing: Icons.menu,
     );
-
 
     return widget.buildUI(
       frontLayer: Column(
