@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   GoogleSignInAccount _currentUser;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  String uid;
 
   @override
   void initState() {
@@ -37,9 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
         idToken: auth.idToken,
       );
 
-      final userCreds =
+      final firebaseUser =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      print(userCreds.user);
+      uid = firebaseUser.user.uid;
       Navigator.of(context).pushNamed('/home');
     } catch (error) {
       print('ERRR IN SIGN IN');
