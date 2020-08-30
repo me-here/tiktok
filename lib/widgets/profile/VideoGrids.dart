@@ -19,11 +19,7 @@ class _VideoGridsState extends State<VideoGrids> {
   final tabController;
   _VideoGridsState(this.tabController);
 
-  List<String> userVideos = [
-    // 'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
-    // 'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
-    // 'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
-  ];
+  List<String> userVideos = [];
 
   @override
   void initState() {

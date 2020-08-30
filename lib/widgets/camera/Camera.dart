@@ -8,6 +8,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 class CameraWidget extends StatefulWidget {
   @override
   _CameraWidgetState createState() => _CameraWidgetState();
@@ -146,6 +148,12 @@ class _CameraWidgetState extends State<CameraWidget> {
       'link': downloadURL,
       'profile': profile,
     });
+
+    // Saves post in users.
+    final uid = FirebaseAuth.instance.currentUser.uid;
+    final localUserPostRef =
+        FirebaseDatabase.instance.reference().child('users/$uid').push();
+    localUserPostRef.set(downloadURL);
   }
 
   void _showException(CameraException e) {
