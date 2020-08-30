@@ -15,21 +15,6 @@ class _ProfileContentTabsState extends State<ProfileContentTabs> {
 
   @override
   Widget build(BuildContext context) {
-    // return SliverAppBar(
-    //   // backgroundColor: Colors.white,
-    //   expandedHeight: 300,
-    //   centerTitle: true,
-    //   title: TabBar(
-    //     tabs: [
-    //       Text(
-    //         'helo',
-    //         style: TextStyle(color: Colors.black),
-    //         textAlign: TextAlign.center,
-    //       ),
-    //     ],
-    //   ),
-    // );
-
     return SliverAppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,

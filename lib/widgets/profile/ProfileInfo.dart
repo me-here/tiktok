@@ -14,7 +14,6 @@ class ProfileInfoDelegate extends SliverPersistentHeaderDelegate {
 
   Widget _createStats(int statNum, String statName) {
     return Container(
-      // width: 110,
       child: Column(
         children: [
           Text(

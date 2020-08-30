@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
+
+import 'package:video_player/video_player.dart';
 
 class VideoGrids extends StatefulWidget {
-
   final tabController;
   VideoGrids(this.tabController);
 
@@ -10,22 +13,28 @@ class VideoGrids extends StatefulWidget {
 }
 
 class _VideoGridsState extends State<VideoGrids> {
-
   final tabController;
   _VideoGridsState(this.tabController);
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+  }
 
+  List<VideoPlayerController> controllers = [];
+
+  @override
+  void dispose() {
+    controllers.forEach((controller) => controller.dispose());
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     List<String> userVideos = [
-      "https://www.bing.com/th?id=OIP.8ocMi6RRdWyTK2I7KSdDJQHaEK&w=194&h=106&c=8&rs=1&qlt=90&dpr=1.25&pid=3.1&rm=2",
-      "https://2.bp.blogspot.com/-lfwoBpXpf8w/Wk_SHcRAjEI/AAAAAAAB28g/zd-02oGRadgXaOt-o9nuS3GxK3ZFZpC3wCLcBGAs/s1600/funny-animals-298-01.jpg",
-      "https://allthatsinteresting.com/wordpress/wp-content/uploads/2018/12/squirrel-hands-up.jpeg",
-      "https://i.ytimg.com/vi/CSHbSe7iW_E/maxresdefault.jpg",
-      "https://www.bing.com/th?id=OIP.8ocMi6RRdWyTK2I7KSdDJQHaEK&w=194&h=106&c=8&rs=1&qlt=90&dpr=1.25&pid=3.1&rm=2",
-      "https://2.bp.blogspot.com/-lfwoBpXpf8w/Wk_SHcRAjEI/AAAAAAAB28g/zd-02oGRadgXaOt-o9nuS3GxK3ZFZpC3wCLcBGAs/s1600/funny-animals-298-01.jpg",
-      "https://allthatsinteresting.com/wordpress/wp-content/uploads/2018/12/squirrel-hands-up.jpeg",
-      "https://i.ytimg.com/vi/CSHbSe7iW_E/maxresdefault.jpg",
+      'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
+      'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
+      'https://firebasestorage.googleapis.com/v0/b/tiktok-25d92.appspot.com/o/videos%2F1598676594489.mp4?alt=media&token=dbc46ca5-0370-4caf-a2af-55ea6c3f19bd',
     ];
 
     List<String> userLikedVideos = [];
@@ -35,7 +44,6 @@ class _VideoGridsState extends State<VideoGrids> {
     //Calculates the height of the gridview with all elements
     double gridVidAspectRatio = 27 / 35; //vidWidth/vidHeight
 
-
     final userVideoGrid = IgnorePointer(
       child: GridView.count(
         crossAxisCount: 3,
@@ -44,12 +52,12 @@ class _VideoGridsState extends State<VideoGrids> {
         shrinkWrap: true,
         childAspectRatio: gridVidAspectRatio,
         children: List.generate(userVideos.length, (index) {
-          return Container(
-            child: Image.network(
-              userVideos[index],
-              fit: BoxFit.fill,
-            ),
+          final vidController = VideoPlayerController.network(
+            userVideos[index],
           );
+          controllers.add(vidController);
+          vidController.initialize();
+          return VideoPlayer(vidController);
         }),
       ),
     );
